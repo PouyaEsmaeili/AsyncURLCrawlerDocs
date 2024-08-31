@@ -114,13 +114,25 @@
 <dt class="sig sig-object py" id="AsyncURLCrawler.crawler.Crawler">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">AsyncURLCrawler.crawler.</span></span><span class="sig-name descname"><span class="pre">Crawler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seed_urls</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parser</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#AsyncURLCrawler.parser.Parser" title="AsyncURLCrawler.parser.Parser"><span class="pre">Parser</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exact</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delay</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#AsyncURLCrawler.crawler.Crawler" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Crawler that extracts URLs from target websites using a Breadth-First Search (BFS) algorithm.</p>
+<p>Extracts URLs from target websites using a Breadth-First Search (BFS) algorithm.</p>
 <dl class="simple">
-<dt>Args:</dt><dd><p>seed_urls (List[str]): Initial URLs to start crawling. Must follow a valid URL pattern, e.g., ‘<a class="reference external" href="https://example.com">https://example.com</a>’.
-parser (Parser): Instance of the Parser class, responsible for fetching and extracting URLs from a given URL.
-deep (bool, optional): If True, crawls all discovered URLs recursively. Defaults to False. Not recommended due to high resource usage.
-exact (bool, optional): If True, restricts crawling to URLs with the same subdomain as the seed URL. Ignored if ‘deep’ is True. Defaults to True.
-delay (float, optional): Time delay (in seconds) between requests to prevent overwhelming the target server. Defaults to 0.</p>
+<dt>Args:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">seed_urls (List[str])<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Initial URLs to start crawling. Must follow a valid URL pattern, e.g., ‘<a class="reference external" href="https://example.com">https://example.com</a>’.</p>
+</dd>
+<dt class="field-even">parser (Parser)<span class="colon">:</span></dt>
+<dd class="field-even"><p>Instance of the Parser class, responsible for fetching and extracting URLs from a given URL.</p>
+</dd>
+<dt class="field-odd">deep (bool, optional)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>If True, crawls all discovered URLs recursively. Defaults to False. Not recommended due to high resource usage.</p>
+</dd>
+<dt class="field-even">exact (bool, optional)<span class="colon">:</span></dt>
+<dd class="field-even"><p>If True, restricts crawling to URLs with the same subdomain as the seed URL. Ignored if ‘deep’ is True. Defaults to True.</p>
+</dd>
+<dt class="field-odd">delay (float, optional)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Time delay (in seconds) between requests to prevent overwhelming the target server. Defaults to 0.</p>
+</dd>
+</dl>
 </dd>
 </dl>
 <dl class="py method">
@@ -165,10 +177,20 @@ delay (float, optional): Time delay (in seconds) between requests to prevent ove
 <p>Fetches a URL, parses its HTML content, and extracts URLs from &lt;a&gt; tags.
 Implements exponential backoff for retrying failed requests.</p>
 <dl class="simple">
-<dt>Args:</dt><dd><p>delay_start (float, optional): Initial delay in the exponential backoff strategy. Defaults to 0.1 seconds.
-max_retries (int, optional): Maximum number of retry attempts. Defaults to 5.
-request_timeout (float, optional): Timeout for each HTTP request in seconds. Defaults to 1 second.
-user_agent (str, optional): User-Agent string for HTTP request headers. Defaults to ‘Mozilla/5.0’.</p>
+<dt>Args:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">delay_start (float, optional)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Initial delay in the exponential backoff strategy. Defaults to 0.1 seconds.</p>
+</dd>
+<dt class="field-even">max_retries (int, optional)<span class="colon">:</span></dt>
+<dd class="field-even"><p>Maximum number of retry attempts. Defaults to 5.</p>
+</dd>
+<dt class="field-odd">request_timeout (float, optional)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Timeout for each HTTP request in seconds. Defaults to 1 second.</p>
+</dd>
+<dt class="field-even">user_agent (str, optional)<span class="colon">:</span></dt>
+<dd class="field-even"><p>User-Agent string for HTTP request headers. Defaults to ‘Mozilla/5.0’.</p>
+</dd>
+</dl>
 </dd>
 </dl>
 <dl class="py method">
@@ -176,7 +198,11 @@ user_agent (str, optional): User-Agent string for HTTP request headers. Defaults
 <em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">probe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#AsyncURLCrawler.parser.Parser.probe" title="Link to this definition"></a></dt>
 <dd><p>Fetches a URL and extracts URLs using an exponential backoff strategy on failures.</p>
 <dl class="simple">
-<dt>Args:</dt><dd><p>url (str): The URL to probe.</p>
+<dt>Args:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">url (str)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The URL to probe.</p>
+</dd>
+</dl>
 </dd>
 <dt>Returns:</dt><dd><p>List[str]: A list of extracted URLs. Returns an empty list if the fetch fails after retries.</p>
 </dd>
@@ -201,7 +227,11 @@ Must be called before each new URL fetch.</p>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 <p>Raised when a URL does not match the expected pattern.</p>
 <dl class="simple">
-<dt>Args:</dt><dd><p>url (str): The invalid URL.</p>
+<dt>Args:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">url (str)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The invalid URL.</p>
+</dd>
+</dl>
 </dd>
 <dt>Attributes:</dt><dd><p>message (str): Explanation of the error.</p>
 </dd>
@@ -213,8 +243,14 @@ Must be called before each new URL fetch.</p>
 <span class="sig-prename descclassname"><span class="pre">AsyncURLCrawler.url_utils.</span></span><span class="sig-name descname"><span class="pre">have_exact_domain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#AsyncURLCrawler.url_utils.have_exact_domain" title="Link to this definition"></a></dt>
 <dd><p>Checks if two URLs share the exact same domain.</p>
 <dl class="simple">
-<dt>Args:</dt><dd><p>url1 (str): The first URL.
-url2 (str): The second URL.</p>
+<dt>Args:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">url1 (str)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The first URL.</p>
+</dd>
+<dt class="field-even">url2 (str)<span class="colon">:</span></dt>
+<dd class="field-even"><p>The second URL.</p>
+</dd>
+</dl>
 </dd>
 <dt>Returns:</dt><dd><p>bool: True if both URLs have the exact same domain including subdomains.</p>
 </dd>
@@ -226,8 +262,14 @@ url2 (str): The second URL.</p>
 <span class="sig-prename descclassname"><span class="pre">AsyncURLCrawler.url_utils.</span></span><span class="sig-name descname"><span class="pre">have_exact_subdomain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#AsyncURLCrawler.url_utils.have_exact_subdomain" title="Link to this definition"></a></dt>
 <dd><p>Checks if two URLs share the same subdomain.</p>
 <dl class="simple">
-<dt>Args:</dt><dd><p>url1 (str): The first URL.
-url2 (str): The second URL.</p>
+<dt>Args:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">url1 (str)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The first URL.</p>
+</dd>
+<dt class="field-even">url2 (str)<span class="colon">:</span></dt>
+<dd class="field-even"><p>The second URL.</p>
+</dd>
+</dl>
 </dd>
 <dt>Returns:</dt><dd><p>bool: True if both URLs have the same subdomain, domain, and suffix.</p>
 </dd>
@@ -239,8 +281,14 @@ url2 (str): The second URL.</p>
 <span class="sig-prename descclassname"><span class="pre">AsyncURLCrawler.url_utils.</span></span><span class="sig-name descname"><span class="pre">normalize_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#AsyncURLCrawler.url_utils.normalize_url" title="Link to this definition"></a></dt>
 <dd><p>Converts a relative URL to an absolute URL based on a base URL.</p>
 <dl class="simple">
-<dt>Args:</dt><dd><p>url (str): The URL to normalize, which may be relative.
-base_url (str): The base URL to resolve relative URLs against.</p>
+<dt>Args:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">url (str)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The URL to normalize, which may be relative.</p>
+</dd>
+<dt class="field-even">base_url (str)<span class="colon">:</span></dt>
+<dd class="field-even"><p>The base URL to resolve relative URLs against.</p>
+</dd>
+</dl>
 </dd>
 <dt>Returns:</dt><dd><p>str: The absolute URL.</p>
 </dd>
@@ -252,7 +300,11 @@ base_url (str): The base URL to resolve relative URLs against.</p>
 <span class="sig-prename descclassname"><span class="pre">AsyncURLCrawler.url_utils.</span></span><span class="sig-name descname"><span class="pre">validate_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#AsyncURLCrawler.url_utils.validate_url" title="Link to this definition"></a></dt>
 <dd><p>Validates a single URL against a predefined regex pattern.</p>
 <dl class="simple">
-<dt>Args:</dt><dd><p>url (str): The URL to validate.</p>
+<dt>Args:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">url (str)<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The URL to validate.</p>
+</dd>
+</dl>
 </dd>
 <dt>Returns:</dt><dd><p>bool: True if the URL matches the pattern, otherwise False.</p>
 </dd>
@@ -264,7 +316,11 @@ base_url (str): The base URL to resolve relative URLs against.</p>
 <span class="sig-prename descclassname"><span class="pre">AsyncURLCrawler.url_utils.</span></span><span class="sig-name descname"><span class="pre">validate_urls</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">urls</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#AsyncURLCrawler.url_utils.validate_urls" title="Link to this definition"></a></dt>
 <dd><p>Validates a list of URLs against a predefined regex pattern.</p>
 <dl class="simple">
-<dt>Args:</dt><dd><p>urls (List[str]): A list of URLs to validate.</p>
+<dt>Args:</dt><dd><dl class="field-list simple">
+<dt class="field-odd">urls (List[str])<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list of URLs to validate.</p>
+</dd>
+</dl>
 </dd>
 <dt>Raises:</dt><dd><p>InvalidURL: If any URL does not match the pattern.</p>
 </dd>
